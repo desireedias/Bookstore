@@ -6,7 +6,7 @@ from product.serializers import ProductSerializer
 
 @pytest.mark.django_db
 def test_product_serializer_accepts_valid_data():
-     data = {
+    data = {
         "title": "Teclado",
         "description": "Teclado mecânico",
         "price": 150,
@@ -20,20 +20,20 @@ def test_product_serializer_accepts_valid_data():
             }
         ],
     }
-     
-     serializer = ProductSerializer(data=data)
-     assert serializer.is_valid(), serializer.errors
+
+    serializer = ProductSerializer(data=data)
+    assert serializer.is_valid(), serializer.errors
 
 
 @pytest.mark.django_db
 def test_product_serializer_returns_valid_data():
-     product = ProductFactory()
+    product = ProductFactory()
 
-     serializer = ProductSerializer(product)
+    serializer = ProductSerializer(product)
 
-     assert serializer.data["title"] == product.title
-     assert serializer.data["price"] == product.price
-     assert serializer.data["active"] == product.active
+    assert serializer.data["title"] == product.title
+    assert serializer.data["price"] == product.price
+    assert serializer.data["active"] == product.active
 
 
 @pytest.mark.django_db
@@ -58,5 +58,3 @@ def test_product_serializer_returns_category():
     serializer = ProductSerializer(product)
 
     assert len(serializer.data["category"]) == 1
-    
-    
